@@ -1,0 +1,7 @@
+name: Skematic
+version: 1.0.0
+api-version: 1.20
+main: dev.efnilite.skematic.Skematic
+commands:
+  skematic:
+    description: Main command for Skematic
