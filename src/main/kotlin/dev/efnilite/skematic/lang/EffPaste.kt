@@ -29,7 +29,7 @@ class EffPaste : Effect() {
 
     @Suppress("UNCHECKED_CAST")
     override fun init(
-        expressions: Array<out Expression<*>>,
+        expressions: Array<out Expression<*>?>,
         matchedPattern: Int,
         isDelayed: Kleenean,
         parseResult: SkriptParser.ParseResult

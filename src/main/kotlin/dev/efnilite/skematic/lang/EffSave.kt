@@ -11,6 +11,7 @@ import ch.njol.skript.lang.SkriptParser
 import ch.njol.util.Kleenean
 import dev.efnilite.neoschematic.Schematic
 import dev.efnilite.skematic.Skematic
+import dev.efnilite.skematic.Skematic.Companion.toSchematic
 import org.bukkit.Location
 import org.bukkit.event.Event
 
@@ -24,7 +25,7 @@ class EffSave : Effect() {
     private lateinit var schematic: Expression<String>
 
     override fun init(
-        expressions: Array<out Expression<*>>,
+        expressions: Array<out Expression<*>?>,
         matchedPattern: Int,
         isDelayed: Kleenean,
         parseResult: SkriptParser.ParseResult
@@ -40,14 +41,17 @@ class EffSave : Effect() {
         val schematic = schematic.getSingle(event)
 
         if (locations == null || schematic == null) return
+        if (locations.size != 2) {
+            Skript.error("Saving schematics requires exactly two locations.")
+        }
 
         Schematic.createAsync(locations[0], locations[1], Skematic.instance).thenAccept {
-            it.saveAsync(schematic, Skematic.instance)
+            it.saveAsync(schematic.toSchematic(), Skematic.instance)
         }
     }
 
     override fun toString(event: Event?, debug: Boolean): String {
-        return "save area between ${locations.toString(event, debug)} to schematic ${schematic.toString(event, debug)}"
+        return "save area between ${locations.toString(event, debug)} (as|to) schematic ${schematic.toString(event, debug)}"
     }
 
     companion object {

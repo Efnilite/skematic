@@ -37,12 +37,15 @@ class EvtPaste : SkriptEvent() {
     }
 
     override fun init(
-        args: Array<out Literal<*>>,
+        args: Array<out Literal<*>?>,
         matchedPattern: Int,
         parseResult: SkriptParser.ParseResult
     ): Boolean {
         ignoringAir = parseResult.mark == 1
-        schematic = args[0] as Literal<String>
+
+        if (args[0] != null) {
+            schematic = args[0] as Literal<String>
+        }
 
         return true
     }
