@@ -30,7 +30,7 @@ class EvtPaste : SkriptEvent() {
             return event.isIgnoringAir
         }
         if (schematic != null) {
-            return event.schematic == schematic?.getSingle(event)?.toSchematicName()
+            return event.schematic.toSchematicName() == schematic?.getSingle(event)?.toSchematicName()
         }
 
         return true
