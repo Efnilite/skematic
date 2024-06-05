@@ -12,6 +12,7 @@ import ch.njol.util.Kleenean
 import dev.efnilite.neoschematic.Schematic
 import dev.efnilite.skematic.Skematic
 import dev.efnilite.skematic.Skematic.Companion.toSchematic
+import dev.efnilite.skematic.schematic.SchematicLoader
 import org.bukkit.Location
 import org.bukkit.event.Event
 
@@ -38,15 +39,17 @@ class EffSave : Effect() {
 
     override fun execute(event: Event) {
         val locations = locations.getArray(event)
-        val schematic = schematic.getSingle(event)
+        val name = schematic.getSingle(event)
 
-        if (locations == null || schematic == null) return
+        if (locations == null || name == null) return
         if (locations.size != 2) {
             Skript.error("Saving schematics requires exactly two locations.")
         }
 
         Schematic.createAsync(locations[0], locations[1], Skematic.instance).thenAccept {
-            it.saveAsync(schematic.toSchematic(), Skematic.instance)
+            it.saveAsync(name.toSchematic(), Skematic.instance)
+
+            SchematicLoader.addSchematic(name, it)
         }
     }
 

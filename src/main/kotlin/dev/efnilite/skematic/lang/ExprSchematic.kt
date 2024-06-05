@@ -5,7 +5,6 @@ import ch.njol.skript.doc.Name
 import ch.njol.skript.doc.Since
 import ch.njol.skript.expressions.base.EventValueExpression
 
-
 @Name("Schematic")
 @Description("The name of the schematic involved in a schematic paste event.")
 @Since("1.0.0")

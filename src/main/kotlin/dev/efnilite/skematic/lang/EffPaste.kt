@@ -10,9 +10,10 @@ import ch.njol.skript.lang.Expression
 import ch.njol.skript.lang.SkriptParser
 import ch.njol.util.Kleenean
 import dev.efnilite.neoschematic.Schematic
-import dev.efnilite.skematic.SchematicPasteEvent
 import dev.efnilite.skematic.Skematic
 import dev.efnilite.skematic.Skematic.Companion.toSchematic
+import dev.efnilite.skematic.schematic.SchematicLoader
+import dev.efnilite.skematic.schematic.SchematicPasteEvent
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.event.Event
@@ -42,16 +43,16 @@ class EffPaste : Effect() {
     }
 
     override fun execute(event: Event) {
-        val schematic = schematic.getSingle(event)
+        val name = schematic.getSingle(event)
         val location = location.getSingle(event)
 
-        if (schematic == null || location == null) return
+        if (name == null || location == null) return
 
-        Schematic.loadAsync(schematic.toSchematic(), Skematic.instance).thenApply {
+        Schematic.loadAsync(name.toSchematic(), Skematic.instance).thenApply {
             Bukkit.getScheduler().runTask(Skematic.instance, Runnable {
                 it.paste(location, ignoringAir)
 
-                Bukkit.getPluginManager().callEvent(SchematicPasteEvent(location, schematic, ignoringAir))
+                Bukkit.getPluginManager().callEvent(SchematicPasteEvent(location, SchematicLoader.getSchematic(name), ignoringAir))
             })
         }
     }

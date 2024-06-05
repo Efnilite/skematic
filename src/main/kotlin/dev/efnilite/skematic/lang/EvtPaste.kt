@@ -8,7 +8,7 @@ import ch.njol.skript.doc.Since
 import ch.njol.skript.lang.Literal
 import ch.njol.skript.lang.SkriptEvent
 import ch.njol.skript.lang.SkriptParser
-import dev.efnilite.skematic.SchematicPasteEvent
+import dev.efnilite.skematic.schematic.SchematicPasteEvent
 import dev.efnilite.skematic.Skematic.Companion.toSchematicName
 import org.bukkit.event.Event
 
@@ -30,7 +30,7 @@ class EvtPaste : SkriptEvent() {
             return event.isIgnoringAir
         }
         if (schematic != null) {
-            return event.schematic.toSchematicName() == schematic?.getSingle(event)?.toSchematicName()
+            return event.schematicData.name == schematic?.getSingle(event)?.toSchematicName()
         }
 
         return true
