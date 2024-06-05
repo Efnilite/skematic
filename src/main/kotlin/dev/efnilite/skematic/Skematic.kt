@@ -1,8 +1,8 @@
 package dev.efnilite.skematic
 
 import ch.njol.skript.Skript
-import dev.efnilite.skematic.Skematic.Companion.toSchematic
 import dev.efnilite.vilib.ViPlugin
+import dev.efnilite.vilib.bstats.bukkit.Metrics
 import dev.efnilite.vilib.util.UpdateChecker
 import java.io.File
 
@@ -19,6 +19,8 @@ class Skematic : ViPlugin() {
         addon.loadClasses("dev.efnilite.skematic", "lang")
 
         UpdateChecker.check(this, 61563)
+
+        Metrics(this, 22150)
     }
 
     override fun disable() {
