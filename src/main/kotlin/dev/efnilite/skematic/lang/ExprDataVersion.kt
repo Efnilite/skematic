@@ -1,5 +1,8 @@
 package dev.efnilite.skematic.lang
 
+import ch.njol.skript.doc.Description
+import ch.njol.skript.doc.Name
+import ch.njol.skript.doc.Since
 import ch.njol.skript.expressions.base.PropertyExpression
 import ch.njol.skript.lang.Expression
 import ch.njol.skript.lang.SkriptParser
@@ -7,6 +10,9 @@ import ch.njol.util.Kleenean
 import dev.efnilite.skematic.schematic.SchematicLoader
 import org.bukkit.event.Event
 
+@Name("Schematic data version")
+@Description("The integer iteration of the schematic format.")
+@Since("1.0.0")
 class ExprDataVersion : PropertyExpression<String, Int>() {
 
     override fun init(

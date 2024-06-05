@@ -19,7 +19,7 @@ import org.bukkit.Location
 import org.bukkit.event.Event
 
 @Name("Paste schematic")
-@Description("Pastes specified schematic at specified location, possibly ignoring air.")
+@Description("Asynchronously pastes specified schematic at specified location, possibly ignoring air.")
 @Examples("paste schematic \"spawn.json\" at player's location ignoring air")
 @Since("1.0.0")
 class EffPaste : Effect() {

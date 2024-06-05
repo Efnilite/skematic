@@ -17,7 +17,7 @@ import org.bukkit.Location
 import org.bukkit.event.Event
 
 @Name("Save")
-@Description("Saves the specified area to a schematic with the specified name.")
+@Description("Asynchronously saves the specified area to a schematic with the specified name.")
 @Examples("save between {_pos1} and {_pos2} to schematic \"lobby\"")
 @Since("1.0.0")
 class EffSave : Effect() {
