@@ -8,12 +8,11 @@ import org.bukkit.util.Vector
  * To reduce memory usage, palette and blocks are not included.
  */
 data class SchematicData(
-    val name: String,
     val dataVersion: Int,
     val minecraftVersion: String,
     val dimensions: Vector
 ) {
 
-    constructor(name: String, schematic: Schematic) : this(name, schematic.dataVersion, schematic.minecraftVersion, schematic.dimensions)
+    constructor(schematic: Schematic) : this(schematic.dataVersion, schematic.minecraftVersion, schematic.dimensions)
 
 }

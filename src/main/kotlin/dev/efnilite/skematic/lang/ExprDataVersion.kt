@@ -13,10 +13,10 @@ import org.bukkit.event.Event
 @Name("Schematic data version")
 @Description("The integer iteration of the schematic format.")
 @Since("1.0.0")
-class ExprDataVersion : PropertyExpression<String, Int>() {
+class ExprDataVersion : PropertyExpression<String, Number>() {
 
     override fun init(
-        expressions: Array<out Expression<*>>,
+        expressions: Array<out Expression<*>?>,
         matchedPattern: Int,
         isDelayed: Kleenean,
         parseResult: SkriptParser.ParseResult
@@ -26,8 +26,8 @@ class ExprDataVersion : PropertyExpression<String, Int>() {
         return true
     }
 
-    override fun get(event: Event, source: Array<out String>): Array<Int> {
-        val dimensions = mutableListOf<Int>()
+    override fun get(event: Event, source: Array<out String>): Array<Number> {
+        val dimensions = mutableListOf<Number>()
 
         for (schematic in source) {
             dimensions += SchematicLoader.getSchematic(schematic).dataVersion
@@ -36,13 +36,13 @@ class ExprDataVersion : PropertyExpression<String, Int>() {
         return dimensions.toTypedArray()
     }
 
-    override fun getReturnType() = Int::class.java
+    override fun getReturnType() = Number::class.java
 
     override fun toString(event: Event?, debug: Boolean) = "schematic data version ${expr.toString(event, debug)}"
 
     companion object {
         init {
-            register(ExprDataVersion::class.java, Int::class.java, "schematic data version", "strings")
+            register(ExprDataVersion::class.java, Number::class.java, "schematic data version", "strings")
         }
     }
 }

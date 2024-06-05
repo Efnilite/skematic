@@ -19,7 +19,7 @@ import org.bukkit.event.Event
 class ExprMinecraftVersion : PropertyExpression<String, String>() {
 
     override fun init(
-        expressions: Array<out Expression<*>>,
+        expressions: Array<out Expression<*>?>,
         matchedPattern: Int,
         isDelayed: Kleenean,
         parseResult: SkriptParser.ParseResult

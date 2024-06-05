@@ -52,7 +52,7 @@ class EffPaste : Effect() {
             Bukkit.getScheduler().runTask(Skematic.instance, Runnable {
                 it.paste(location, ignoringAir)
 
-                Bukkit.getPluginManager().callEvent(SchematicPasteEvent(location, SchematicLoader.getSchematic(name), ignoringAir))
+                Bukkit.getPluginManager().callEvent(SchematicPasteEvent(location, name, SchematicLoader.getSchematic(name), ignoringAir))
             })
         }
     }

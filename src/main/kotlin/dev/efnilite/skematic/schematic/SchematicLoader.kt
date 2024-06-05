@@ -1,6 +1,5 @@
 package dev.efnilite.skematic.schematic
 
-import ch.njol.skript.Skript
 import dev.efnilite.neoschematic.Schematic
 import dev.efnilite.skematic.Skematic
 import dev.efnilite.skematic.Skematic.Companion.toSchematic
@@ -16,7 +15,7 @@ object SchematicLoader {
             val name = file.nameWithoutExtension
 
             Schematic.loadAsync(file, Skematic.instance).thenAccept {
-                schematics[name] = SchematicData(name, it)
+                schematics[name] = SchematicData(it)
             }
         }
     }
@@ -27,7 +26,7 @@ object SchematicLoader {
      * @param schematic The schematic.
      */
     fun addSchematic(name: String, schematic: Schematic) {
-        schematics[name] = SchematicData(name, schematic)
+        schematics[name] = SchematicData(schematic)
     }
 
     /**
@@ -42,15 +41,11 @@ object SchematicLoader {
         val file = name.toSchematic()
 
         if (!file.exists()) {
-            Skript.error("Schematic $name does not exist.")
+            throw IllegalArgumentException("Schematic $name does not exist.")
         }
 
-        val schematic = Schematic.load(file)
+        val schematic = Schematic.load(file) ?: throw IllegalArgumentException("Failed to load schematic $name.")
 
-        if (schematic == null) {
-            Skript.error("Failed to load schematic $name.")
-        }
-
-        return SchematicData(name, schematic!!)
+        return SchematicData(schematic)
     }
 }

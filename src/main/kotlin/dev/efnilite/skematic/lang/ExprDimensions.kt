@@ -19,7 +19,7 @@ import org.bukkit.util.Vector
 class ExprDimensions : PropertyExpression<String, Vector>() {
 
     override fun init(
-        expressions: Array<out Expression<*>>,
+        expressions: Array<out Expression<*>?>,
         matchedPattern: Int,
         isDelayed: Kleenean,
         parseResult: SkriptParser.ParseResult
