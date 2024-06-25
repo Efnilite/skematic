@@ -48,6 +48,11 @@ class EffPaste : Effect() {
 
         if (name == null || location == null) return
 
+        if (!name.toSchematic().exists()) {
+            Skript.error("Schematic $name does not exist.")
+            return
+        }
+
         Schematic.loadAsync(name.toSchematic(), Skematic.instance).thenApply {
             Bukkit.getScheduler().runTask(Skematic.instance, Runnable {
                 it.paste(location, ignoringAir)
