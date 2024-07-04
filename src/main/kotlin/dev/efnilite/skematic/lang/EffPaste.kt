@@ -19,12 +19,14 @@ import org.bukkit.Location
 import org.bukkit.event.Event
 
 @Name("Paste schematic")
-@Description("Asynchronously pastes specified schematic at specified location, possibly ignoring air.")
-@Examples("paste schematic \"spawn.json\" at player's location ignoring air")
-@Since("1.0.0")
+@Description("Asynchronously pastes specified schematic at specified location, possibly ignoring air. " +
+        "If centered is used, will paste the schematic such that the location is the center of the schematic.")
+@Examples("paste schematic \"spawn.json\" centered at player's location ignoring air")
+@Since("3.0.0, 3.0.3 (centered)")
 class EffPaste : Effect() {
 
     private var ignoringAir = false
+    private var centered = false
     private lateinit var schematic: Expression<String>
     private lateinit var location: Expression<Location>
 
@@ -35,7 +37,9 @@ class EffPaste : Effect() {
         isDelayed: Kleenean,
         parseResult: SkriptParser.ParseResult
     ): Boolean {
-        ignoringAir = parseResult.mark == 1
+        ignoringAir = parseResult.hasTag("air")
+        centered = parseResult.hasTag("centered")
+
         schematic = expressions[0] as Expression<String>
         location = expressions[1] as Expression<Location>
 
@@ -51,6 +55,11 @@ class EffPaste : Effect() {
         if (!name.toSchematic().exists()) {
             Skript.error("Schematic $name does not exist.")
             return
+        }
+
+        if (centered) {
+            val dimensions = SchematicLoader.getSchematic(name).dimensions
+            location.subtract(dimensions.x / 2, dimensions.y / 2, dimensions.z / 2)
         }
 
         Schematic.loadAsync(name.toSchematic(), Skematic.instance).thenApply {
@@ -69,7 +78,7 @@ class EffPaste : Effect() {
     companion object {
 
         init {
-            Skript.registerEffect(EffPaste::class.java, "paste schematic %string% (at|to) %location% [(1¦(ignoring|skipping) air)]")
+            Skript.registerEffect(EffPaste::class.java, "paste schematic %string% [:centered] (at|to) %location% [(ignoring|skipping) :air]")
         }
 
     }
