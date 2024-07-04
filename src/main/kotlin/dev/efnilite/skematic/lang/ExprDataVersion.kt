@@ -12,7 +12,7 @@ import org.bukkit.event.Event
 
 @Name("Schematic data version")
 @Description("The integer iteration of the schematic format.")
-@Since("1.0.0")
+@Since("3.0.0")
 class ExprDataVersion : PropertyExpression<String, Number>() {
 
     override fun init(

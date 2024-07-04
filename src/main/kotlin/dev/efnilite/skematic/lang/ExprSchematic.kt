@@ -15,7 +15,7 @@ import org.bukkit.event.Event
 
 @Name("Schematic")
 @Description("The name of the schematic involved in a schematic paste event.")
-@Since("1.0.0")
+@Since("3.0.0")
 @Events("Paste schematic")
 class ExprSchematic : SimpleExpression<String>() {
 

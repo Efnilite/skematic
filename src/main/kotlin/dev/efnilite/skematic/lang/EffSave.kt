@@ -16,10 +16,10 @@ import dev.efnilite.skematic.schematic.SchematicLoader
 import org.bukkit.Location
 import org.bukkit.event.Event
 
-@Name("Save")
+@Name("Save schematic")
 @Description("Asynchronously saves the specified area to a schematic with the specified name.")
 @Examples("save between {_pos1} and {_pos2} to schematic \"lobby\"")
-@Since("1.0.0")
+@Since("3.0.0")
 class EffSave : Effect() {
 
     private lateinit var locations: Expression<Location>

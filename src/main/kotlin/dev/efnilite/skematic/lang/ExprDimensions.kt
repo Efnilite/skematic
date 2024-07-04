@@ -15,7 +15,7 @@ import org.bukkit.util.Vector
 @Name("Schematic dimensions")
 @Description("The vector dimensions of a schematic.")
 @Examples("set {_dimensions} to schematic dimensions of \"lobby\"")
-@Since("1.0.0")
+@Since("3.0.0")
 class ExprDimensions : PropertyExpression<String, Vector>() {
 
     override fun init(

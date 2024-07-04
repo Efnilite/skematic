@@ -15,7 +15,7 @@ import org.bukkit.event.Event
 @Description("The Minecraft version in which a schematic was saved.")
 @Examples("if schematic minecraft version of \"lobby\" isn't \"1.20.6\":",
     "\tsend \"Outdated schematic file.\" to player")
-@Since("1.0.0")
+@Since("3.0.0")
 class ExprMinecraftVersion : PropertyExpression<String, String>() {
 
     override fun init(

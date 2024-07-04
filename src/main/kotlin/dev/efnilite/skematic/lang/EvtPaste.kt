@@ -16,7 +16,7 @@ import org.bukkit.event.Event
 @Examples("on schematic paste of \"lobby\":",
     "\tbroadcast \"Schematic pasted!\""
 )
-@Since("1.0.0")
+@Since("3.0.0")
 class EvtPaste : SkriptEvent() {
 
     private var ignoringAir = false
