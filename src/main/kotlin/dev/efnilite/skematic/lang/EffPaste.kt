@@ -37,7 +37,7 @@ class EffPaste : Effect() {
         isDelayed: Kleenean,
         parseResult: SkriptParser.ParseResult
     ): Boolean {
-        ignoringAir = parseResult.hasTag("air")
+        ignoringAir = parseResult.hasTag("ignoring air") || parseResult.hasTag("skipping air")
         centered = parseResult.hasTag("centered")
 
         schematic = expressions[0] as Expression<String>
@@ -78,7 +78,7 @@ class EffPaste : Effect() {
     companion object {
 
         init {
-            Skript.registerEffect(EffPaste::class.java, "paste schematic %string% [:centered] (at|to) %location% [(ignoring|skipping) :air]")
+            Skript.registerEffect(EffPaste::class.java, "paste schematic %string% [:centered] (at|to) %location% [:(ignoring|skipping) air]")
         }
 
     }
