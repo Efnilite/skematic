@@ -6,7 +6,7 @@
 
     <groupId>dev.efnilite</groupId>
     <artifactId>Skematic</artifactId>
-    <version>3.0.3</version>
+    <version>3.0.4</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -151,7 +151,7 @@
         <dependency>
             <groupId>com.github.efnilite</groupId>
             <artifactId>vilib</artifactId>
-            <version>389d19ca0f</version>
+            <version>c8976daa22</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
