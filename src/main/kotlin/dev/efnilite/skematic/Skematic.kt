@@ -12,6 +12,8 @@ class Skematic : ViPlugin() {
         instance = this
         stopping = false
 
+        registerCommand("skematic", Command)
+
         instance.dataFolder.mkdirs()
 
         val addon = Skript.registerAddon(this)
